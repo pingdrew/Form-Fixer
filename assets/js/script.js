@@ -9,4 +9,5 @@ searchButton.addEventListener('click', searched);
 function searched() {
   var input = searchText.value
 
-}
+};
+

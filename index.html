@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,25 +8,39 @@
   <title>Document</title>
 </head>
 
-<!-- Header/Hero -->
-<section class="hero is-medium is-link">
-  <div class="hero-body">
-    <p class="title">
-      Form-Fixer
-    </p>
-    <p class="subtitle">
-      Form correction for all levels
-    </p>
-  </div>
-</section>
+<body>
+  <!-- Header/Hero -->
+  <nav class="hero is-medium is-link">
+    <div class="hero-body">
+      <h1 class="title">
+        Form-Fixer
+      </h1>
+      <p class="subtitle">
+        An injury preventing encyclopedia for everyone.
+      </p>
+    </div>
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          Search for the name, type, difficulty, or a muscle group to target
+        </p>
+        <button class="card-header-icon" aria-label="more options">
+          <span class="icon">
+            <i class="fas fa-angle-down" aria-hidden="true"></i>
+          </span>
+        </button>
+      </header>
+      <input class="input is-primary" type="text" placeholder="Dumbbell incline bench press">
+    </div>
+  </nav>
 
-<!-- Sidebar for Muscle Groups -->
-<div class="box has-background-white">
-  <aside class="menu">
-    <p class="menu-label has-text-grey-dark">
-      Exercise Type
-    </p>
-      <ul class="menu-list">
+  <!-- Sidebar for Muscle Groups -->
+  <div class="columns is-one-third box has-background-white">
+    <aside class="menu column">
+      <h3 class="is-medium menu-label has-text-grey-dark">
+        Exercise Type
+      </h3>
+      <ul class="box menu-list">
         <li>
           <a class="has-text-grey-dark">
             Cardio
@@ -62,10 +77,10 @@
           </a>
         </li>
       </ul>
-    <p class="menu-label has-text-grey-dark">
-      Muscle Groups
-    </p>
-      <ul class="menu-list">
+      <h3 class="is-medium menu-label has-text-grey-dark">
+        Muscle Groups
+      </h3>
+      <ul class="box menu-list">
         <li>
           <a class="has-text-grey-dark">
             Abdominals
@@ -147,10 +162,10 @@
           </a>
         </li>
       </ul>
-    <p class="menu-label has-text-grey-dark">
-      Difficulty
-    </p>
-      <ul class="menu-list">
+      <h3 class="is-large menu-label has-text-grey-dark">
+        Difficulty
+      </h3>
+      <ul class="box menu-list">
         <li>
           <a class="has-text-grey-dark">
             Beginner
@@ -167,26 +182,13 @@
           </a>
         </li>
       </ul>
-    
+    </aside>
 
-  </aside>
-</div>
-
-<!-- Card for Input -->
-<div class="card">
-  <header class="card-header">
-    <p class="card-header-title">
-      Search for the name, type, or difficulty of exercise, or a muscle group to target
-    </p>
-    <button class="card-header-icon" aria-label="more options">
-      <span class="icon">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </button>
-  </header>
-</div>
-<!-- Input -->
-<body>
-  <input class="input is-primary" type="text" placeholder="Primary input">
+    <div class="column is-two-thirds box">
+      here is the individual exercise
+      <iframe src="#" frameborder="0"></iframe>
+    </div>
+  </div>
 </body>
+
 </html>

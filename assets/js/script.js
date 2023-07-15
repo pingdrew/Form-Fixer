@@ -1,5 +1,5 @@
 var exerciseAPI = 'https://api.api-ninjas.com/v1/exercises?';
-var youtubeAPI = 'https://www.googleapis.com/youtube/v3/videos?';
+var youtubeAPI = 'https://www.googleapis.com/youtube/v3/search?';
 
 var searchButton = document.getElementById('search-button');
 var fetchResults = document.getElementById('fetch-results');
@@ -24,5 +24,12 @@ fetchResults.addEventListener('click', function () {
   // TODO: Remove results other than event.target then make target full size with
   // description and iframe (or "See Demonstration" button to open modal)
   
-  // Fetch video from YT API using "Proper form for " + name
+  var youtubeAPI = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q='
+                   + encodeURIComponent('Proper form for' + name)
+                   + '&key=' + ytKey;
+  fetch(youtubeAPI).then( function (response) {
+    return response.json();
+  }).then( function (data) {
+    console.log(data);
+  })
 });

@@ -1,0 +1,14 @@
+#hero-image {
+  background-image: url("../images/hero-image.jpg");
+  background-size: cover;
+}
+
+.hero-body h1{
+  margin: auto;
+  width: fit-content;
+  border-bottom-style: solid;
+}
+
+.hero-body p{
+  color: blue;
+}

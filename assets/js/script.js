@@ -4,6 +4,7 @@ var youtubeAPI = 'https://www.googleapis.com/youtube/v3/search?';
 var searchButton = document.getElementById('search-button');
 var fetchResults = document.getElementById('fetch-results');
 
+
 searchButton.addEventListener('click', function () {
   var searchText = document.getElementById('search-box');
 
@@ -24,7 +25,7 @@ fetchResults.addEventListener('click', function () {
   // TODO: Remove results other than event.target then make target full size with
   // description and iframe (or "See Demonstration" button to open modal)
   
-  var youtubeAPI = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q='
+  youtubeAPI = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q='
                    + encodeURIComponent('Proper form for' + name)
                    + '&key=' + ytKey;
   fetch(youtubeAPI).then( function (response) {

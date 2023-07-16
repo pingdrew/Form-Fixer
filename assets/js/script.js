@@ -21,16 +21,20 @@ searchButton.addEventListener('click', function () {
 // TODO: Listen to Diff list, fetch and display using a.value as "difficulty="
 
 
-fetchResults.addEventListener('click', function () {
+fetchResults.addEventListener('click', function (event) {
   // TODO: Remove results other than event.target then make target full size with
   // description and iframe (or "See Demonstration" button to open modal)
-  
+
+  let player;
   youtubeAPI = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q='
-                   + encodeURIComponent('Proper form for' + name)
+                   + encodeURIComponent('Proper form for' + event.target.value)
                    + '&key=' + ytKey;
   fetch(youtubeAPI).then( function (response) {
     return response.json();
   }).then( function (data) {
-    console.log(data);
+    var videoID = data.items[0].id.videoID;
+
+    player = new YT.Player('player', { height: '400', width: '600'});
+    player.loadVideoByID(videoID);
   })
 });

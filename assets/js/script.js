@@ -1,9 +1,14 @@
 var exerciseAPI = 'https://api.api-ninjas.com/v1/exercises?';
+var exerciseKey;
 var youtubeAPI = 'https://www.googleapis.com/youtube/v3/search?';
+var youtubeKey;
 
 var searchButton = document.getElementById('search-button');
+var muscleList = document.getElementById('muscle-list');
 var fetchResults = document.getElementById('fetch-results');
 
+var newResult = document.createElement("li");
+newResult.className("box has-background-grey-lighter");
 
 searchButton.addEventListener('click', function () {
   var searchText = document.getElementById('search-box');
@@ -17,6 +22,26 @@ searchButton.addEventListener('click', function () {
 // TODO: Listen to Type list, fetch and display using a.value as "type="
 
 // TODO: Listen to Muscle list, fetch and display using a.value as "muscle="
+muscleList.addEventListener('click', function (event) {
+  var muscle = event.target.textContent;
+
+  exerciseAPI = exerciseAPI + 'muscle=' + muscle + '&X-Api-Key' + exerciseKey;
+
+  fetch(exerciseAPI).then( function (response) {
+    return response.json();
+  }).then( function (data) {
+    for (i = 0; i < data.length; i++) {
+      var resultName = document.createElement('h2');
+      resultName.textContent = data[i].name;
+
+      var resultDesc = document.createElement('p');
+      resultDesc.textContent = data[i].instructions;
+
+      newResult.append(resultName, resultDesc);
+      fetchResults.append(newResult);
+    }
+  })
+})
 
 // TODO: Listen to Diff list, fetch and display using a.value as "difficulty="
 
@@ -27,8 +52,8 @@ fetchResults.addEventListener('click', function (event) {
 
   let player;
   youtubeAPI = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q='
-                   + encodeURIComponent('Proper form for' + event.target.value)
-                   + '&key=' + ytKey;
+                   + encodeURIComponent('Proper form for' + event.target.textContent)
+                   + '&key=' + youtubeKey;
   fetch(youtubeAPI).then( function (response) {
     return response.json();
   }).then( function (data) {

@@ -1,7 +1,7 @@
 var exerciseAPI = 'https://api.api-ninjas.com/v1/exercises?';
-var exerciseKey;
+var exerciseKey = 'bYqbwHUgCmk04IRweYUKJA==uYWz1DBHVfyCSUbZ';
 var youtubeAPI = 'https://www.googleapis.com/youtube/v3/search?';
-var youtubeKey;
+var youtubeKey = 'AIzaSyCp-bCzTWnxh6Vm1tC2h-HZmc5mrcaCuY0';
 
 var searchButton = document.getElementById('search-button');
 var muscleList = document.getElementById('muscle-list');

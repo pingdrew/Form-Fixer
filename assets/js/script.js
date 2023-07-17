@@ -34,19 +34,17 @@ searchButton.addEventListener('click', function (event) {
 
 $('ul').children('li').on('click', function () {
   var liElement =  $(this).closest('ul').attr('id');
+
   if (liElement === 'exercise-type') {
     var type = (this).innerText;
-    console.log(type)
     generateNinjaResponse('', type, '', '');
 
   }else if (liElement === 'muscle-groups') {
     var muscle = (this).innerText;
-    console.log(muscle)
     generateNinjaResponse('', '', muscle, '');
 
   }else if (liElement === 'difficulty') {
     var difficulty = (this).innerText;
-    console.log(difficulty)
     generateNinjaResponse('', '', '', difficulty);
   };
 });
@@ -62,6 +60,7 @@ $('ul').children('li').on('click', function () {
 
 function generateNinjaResponse(search, type, muscle, difficulty) {
   var ajaxURL = 'https://api.api-ninjas.com/v1/exercises?'
+
   if(search){
     ajaxURL += 'name=' + search.replaceAll(' ', '_');
 
@@ -75,14 +74,13 @@ function generateNinjaResponse(search, type, muscle, difficulty) {
     ajaxURL += 'difficulty=' + difficulty.replaceAll(' ', '_');
   }
 
-  console.log(ajaxURL)
   $.ajax({
     method: 'GET',
     url: ajaxURL,
     headers: { 'X-Api-Key': 'mA5oa09tNgY0gFRJLXUweCZrftRWP5Cn9CX75yIx' },
     contentType: 'application/json',
+
     success: function (result) {
-      console.log(result)
       $('#results-list').children().remove();
       for (i = 0; i < result.length; i++) {
         var outerDiv = document.createElement('div');
@@ -92,12 +90,16 @@ function generateNinjaResponse(search, type, muscle, difficulty) {
         innerTitle.classList.add("is-size-3", "menu-label", "has-text-black");
         innerTitle.textContent = result[i].name;
 
-        var innerText = document.createElement('p');
-        innerText.textContent = result[i].instructions;
+        var innerText1 = document.createElement('p');
+        innerText1.textContent = 'Muscle: ' + result[i].muscle + '    |   Equipment: ' + result[i].equipment + '    |   Type: ' + result[i].type;
+
+        var innerText2 = document.createElement('p');
+        innerText2.textContent = result[i].instructions;
 
         var resultList = document.getElementById('results-list')
         outerDiv.appendChild(innerTitle);
-        outerDiv.appendChild(innerText);
+        outerDiv.appendChild(innerText1);
+        outerDiv.appendChild(innerText2);
         resultList.appendChild(outerDiv);
       };
     },

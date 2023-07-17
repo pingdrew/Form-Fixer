@@ -8,7 +8,7 @@ var muscleList = document.getElementById('muscle-list');
 var fetchResults = document.getElementById('fetch-results');
 
 var newResult = document.createElement("li");
-newResult.className("box has-background-grey-lighter");
+newResult.setAttribute('class', 'box has-background-grey-lighter');
 
 searchButton.addEventListener('click', function () {
   var searchText = document.getElementById('search-box');
@@ -23,6 +23,7 @@ searchButton.addEventListener('click', function () {
 
 // TODO: Listen to Muscle list, fetch and display using a.value as "muscle="
 muscleList.addEventListener('click', function (event) {
+  console.log(10);
   var muscle = event.target.textContent;
 
   exerciseAPI = exerciseAPI + 'muscle=' + muscle + '&X-Api-Key' + exerciseKey;

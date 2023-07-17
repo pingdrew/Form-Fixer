@@ -1,3 +1,7 @@
+* {
+  transition: 1.2s all;
+}
+
 #hero-image {
   background-image: url("../images/hero-image.jpg");
   background-size: cover;

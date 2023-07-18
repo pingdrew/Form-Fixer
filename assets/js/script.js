@@ -1,23 +1,26 @@
+// Global variables for search button, fetch results and muscle groups
 var searchButton = document.getElementById('search-button');
 var muscleList = document.getElementById('muscle-groups');
 var fetchResults = document.getElementById('fetch-results');
 
+// Combined function to call the API Ninjas Exercise API depending on the type of query
 function generateNinjaResponse(search, type, muscle, difficulty) {
   var ajaxURL = 'https://api.api-ninjas.com/v1/exercises?'
 
-  if(search){
+  if (search) {
     ajaxURL += 'name=' + search.replaceAll(' ', '_');
 
-  } else if(type){
+  } else if (type) {
     ajaxURL += 'type=' + type.replaceAll(' ', '_');
 
-  }else if(muscle){
+  } else if (muscle) {
     ajaxURL += 'muscle=' + muscle.replaceAll(' ', '_');
 
-  }else if(difficulty){
+  } else if (difficulty) {
     ajaxURL += 'difficulty=' + difficulty.replaceAll(' ', '_');
   }
 
+  // jQuery.ajax to call the API and dynamically create/remove HTML elements displaying the results of the API call
   $.ajax({
     method: 'GET',
     url: ajaxURL,
@@ -43,7 +46,7 @@ function generateNinjaResponse(search, type, muscle, difficulty) {
         var demoBtn = document.createElement('button');
         demoBtn.setAttribute('class', 'button mt-2 has-background-grey-light demo-button');
         demoBtn.textContent = 'Demonstration';
-        
+
         var resultList = document.getElementById('results-list')
         outerDiv.appendChild(innerTitle);
         outerDiv.appendChild(innerText1);
@@ -58,6 +61,7 @@ function generateNinjaResponse(search, type, muscle, difficulty) {
   });
 };
 
+// Generates a dim modal displaying a YouTube tutorial called via the YouTube Video API
 function showVideo(id) {
   var dim = document.querySelector('.dim');
   var modal = document.querySelector('.modal');
@@ -68,7 +72,7 @@ function showVideo(id) {
   modal.style.display = 'block';
   dim.style.display = 'block';
 
-  window.onclick = function(event) {
+  window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = 'none';
       dim.style.display = 'none';
@@ -76,41 +80,62 @@ function showVideo(id) {
   }
 }
 
+// Event Listener for the search-box
 searchButton.addEventListener('click', function (event) {
   event.preventDefault();
   var searchText = document.getElementById('search-box');
 
   var search = searchText.value.trim();
+  var localStorageSearch = localStorage.getItem('searchHistory');
+  var localP = JSON.parse(localStorage.getItem('searchHistory'));
+  var localStore = [];
+
+  if (search) {
+    if (localStorageSearch && !localP.includes(search)) {
+      localP.push(search)
+      localStorage.setItem('searchHistory', JSON.stringify(localP))
+    } else if (!localStore.includes(search)) {
+      localStore.push(search)
+      localStorage.setItem('searchHistory', JSON.stringify(localStore))
+    };
+  };
 
   generateNinjaResponse(search, '', '', '')
 });
 
+// Calls the combined function for the Exercise API depending on the section that is selected
 $('ul').children('li').on('click', function () {
-  var liElement =  $(this).closest('ul').attr('id');
+  var liElement = $(this).closest('ul').attr('id');
 
   if (liElement === 'exercise-type') {
     var type = (this).innerText;
     generateNinjaResponse('', type, '', '');
 
-  }else if (liElement === 'muscle-groups') {
+  } else if (liElement === 'muscle-groups') {
     var muscle = (this).innerText;
     generateNinjaResponse('', '', muscle, '');
 
-  }else if (liElement === 'difficulty') {
+  } else if (liElement === 'difficulty') {
     var difficulty = (this).innerText;
     generateNinjaResponse('', '', '', difficulty);
   };
 });
 
+// Event Listener for clicking on the demo button, retrieving a YouTube tutorial for the proper form of the exercise
 fetchResults.addEventListener('click', function (event) {
   if (event.target.classList.contains('demo-button')) {
     var search = 'Proper form for ' + $(event.target).parent().find('h2').text();
 
     $.get('https://www.googleapis.com/youtube/v3/search?key=AIzaSyCp-bCzTWnxh6Vm1tC2h-HZmc5mrcaCuY0&part=snippet&type=video&maxResults=1&q='
-    + encodeURIComponent(search),
+      + encodeURIComponent(search),
       function (data) {
         var id = data.items[0].id.videoId;
         showVideo(id);
+
       });
   }
-})
+});
+
+
+
+

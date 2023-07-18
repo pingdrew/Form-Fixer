@@ -20,7 +20,9 @@ Introducing Form Fixer, a comprehensive web application designed to provide user
 
 - Demonstration video pulled from YouTube in a Modal window
 
-- Use of [Exercises API - API Ninjas](https://api-ninjas.com/api/exercises) and [YouTube Video API]([Videos &nbsp;|&nbsp; YouTube Data API &nbsp;|&nbsp; Google for Developers](https://developers.google.com/youtube/v3/docs/videos))
+- Responsive website layout
+
+- Use of [Exercises API - API Ninjas](https://api-ninjas.com/api/exercises), [YouTube Video API](https://developers.google.com/youtube/v3/docs/videos), [Bulma CSS Framework](https://bulma.io/) and [jQuery JavaScript Library](https://jquery.com/)
 
 ### Screenshot
 

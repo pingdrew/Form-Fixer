@@ -63,17 +63,28 @@ function generateNinjaResponse(search, type, muscle, difficulty) {
 
 function generateSearchHistory() {
   localP = JSON.parse(localStorage.getItem('searchHistory'));
+  if (localP) {
+    $('#history-title').css('display', 'block');
+    $('#search-history').css('display', 'block');
 
-  $('#search-history').children().remove();
+    $('#search-history').children().remove();
 
-  for (i = 0; i < localP.length; i++) {
-    var createdLI = document.createElement('li');
-    createdLI.classList.add("p-1", "has-background-grey-lighter");
-    createdLI.textContent = localP[i];
-    
-    var pastSearches = document.getElementById('search-history');
-    pastSearches.appendChild(createdLI);
-  };
+    for (i = 0; i < localP.length; i++) {
+      var createdLI = document.createElement('li');
+  
+      var createdA = document.createElement('a');
+      createdA.classList.add('has-text-grey-dark');
+      createdA.textContent = localP[i];
+  
+      var pastSearches = document.getElementById('search-history');
+      createdLI.appendChild(createdA);
+      pastSearches.appendChild(createdLI);
+    };
+  } else {
+    $('#history-title').css('display', 'none');
+    $('#search-history').css('display', 'none');
+  }
+
 };
 
 // Generates a dim modal displaying a YouTube tutorial called via the YouTube Video API

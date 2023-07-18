@@ -1,7 +1,9 @@
+// Global variables for search button, fetch results and muscle groups
 var searchButton = document.getElementById('search-button');
 var muscleList = document.getElementById('muscle-groups');
 var fetchResults = document.getElementById('fetch-results');
 
+// Combined function to call the API Ninjas Exercise API depending on the type of query
 function generateNinjaResponse(search, type, muscle, difficulty) {
   var ajaxURL = 'https://api.api-ninjas.com/v1/exercises?'
 
@@ -18,6 +20,7 @@ function generateNinjaResponse(search, type, muscle, difficulty) {
     ajaxURL += 'difficulty=' + difficulty.replaceAll(' ', '_');
   }
 
+  // jQuery.ajax to call the API and dynamically create/remove HTML elements displaying the results of the API call
   $.ajax({
     method: 'GET',
     url: ajaxURL,
@@ -58,6 +61,7 @@ function generateNinjaResponse(search, type, muscle, difficulty) {
   });
 };
 
+// Generates a dim modal displaying a YouTube tutorial called via the YouTube Video API
 function showVideo(id) {
   var dim = document.querySelector('.dim');
   var modal = document.querySelector('.modal');
@@ -76,6 +80,7 @@ function showVideo(id) {
   }
 }
 
+// Event Listener for the search-box
 searchButton.addEventListener('click', function (event) {
   event.preventDefault();
   var searchText = document.getElementById('search-box');
@@ -85,6 +90,7 @@ searchButton.addEventListener('click', function (event) {
   generateNinjaResponse(search, '', '', '')
 });
 
+// Calls the combined function for the Exercise API depending on the section that is selected
 $('ul').children('li').on('click', function () {
   var liElement =  $(this).closest('ul').attr('id');
 
@@ -102,6 +108,7 @@ $('ul').children('li').on('click', function () {
   };
 });
 
+// Event Listener for clicking on the demo button, retrieving a YouTube tutorial for the proper form of the exercise
 fetchResults.addEventListener('click', function (event) {
   if (event.target.classList.contains('demo-button')) {
     var search = 'Proper form for ' + $(event.target).parent().find('h2').text();

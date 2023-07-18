@@ -61,6 +61,21 @@ function generateNinjaResponse(search, type, muscle, difficulty) {
   });
 };
 
+function generateSearchHistory() {
+  localP = JSON.parse(localStorage.getItem('searchHistory'));
+
+  $('#search-history').children().remove();
+
+  for (i = 0; i < localP.length; i++) {
+    var createdLI = document.createElement('li');
+    createdLI.classList.add("p-1", "has-background-grey-lighter");
+    createdLI.textContent = localP[i];
+    
+    var pastSearches = document.getElementById('search-history');
+    pastSearches.appendChild(createdLI);
+  };
+};
+
 // Generates a dim modal displaying a YouTube tutorial called via the YouTube Video API
 function showVideo(id) {
   var dim = document.querySelector('.dim');
@@ -100,7 +115,17 @@ searchButton.addEventListener('click', function (event) {
     };
   };
 
-  generateNinjaResponse(search, '', '', '')
+  generateSearchHistory();
+  generateNinjaResponse(search, '', '', '');
+});
+
+$('#search-history').on('click', function (event) {
+  generateNinjaResponse(event.target.textContent, '', '', '')
+});
+
+$('#clear-button').on('click', function () {
+  localStorage.clear('searchHistory')
+  generateSearchHistory();
 });
 
 // Calls the combined function for the Exercise API depending on the section that is selected
@@ -136,6 +161,4 @@ fetchResults.addEventListener('click', function (event) {
   }
 });
 
-
-
-
+generateSearchHistory();

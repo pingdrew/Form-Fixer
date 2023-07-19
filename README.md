@@ -32,6 +32,6 @@ Introducing Form Fixer, a comprehensive web application designed to provide user
 ### Link to Deployed Application
 ---
 
-[Form-Fixer](https://pingdrew.github.io/project-1-group-6/ "https://pingdrew.github.io/project-1-group-6/")
+[Form-Fixer](https://pingdrew.github.io/Form-Fixer/)
 
 
